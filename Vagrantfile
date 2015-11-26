@@ -1,5 +1,10 @@
 VAGRANT_API_VERSION = '2'
 
+required_plugins = %w( vagrant-vbguest )
+required_plugins.each do |plugin|
+  exec "vagrant plugin install #{plugin};vagrant #{ARGV.join(" ")}" unless Vagrant.has_plugin? plugin || ARGV[0] == 'plugin'
+end
+
 Vagrant.configure(VAGRANT_API_VERSION) do |config|
 
   # Base VM OS configuration
