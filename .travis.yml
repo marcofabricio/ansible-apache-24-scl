@@ -24,3 +24,6 @@ script:
   - sshpass -p password ssh root@localhost -p 2222 -o StrictHostKeyChecking=no "exit"
   - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
   - ansible-playbook -i tests/inventory tests/test.yml
+
+after_failure:
+  - sshpass -p password ssh root@localhost -p 2222 -o StrictHoskKeyChecking=no "systemctl list-unit-files | grep httpd; exit"
