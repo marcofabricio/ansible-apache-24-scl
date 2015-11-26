@@ -1,0 +1,6 @@
+---
+
+- include: scl_repo.yml
+- include: install.yml
+- include: modules.yml
+- include: vhosts.yml

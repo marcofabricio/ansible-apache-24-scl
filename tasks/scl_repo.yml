@@ -1,0 +1,26 @@
+---
+
+- name: Apache 2.4 SCL | ensure scl-utils are installed
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: apache24_scl_scl_utils_packages
+  when: apache24_scl_install_scl_repo
+  tags:
+    - scl
+    - apache
+    - apache24
+    - webserver
+    - yum
+
+- name: Apache 2.4 SCL | install apache 2.4 scl repository
+  yum:
+    name: "{{ apache24_scl_scl_repo_url }}"
+    state: installed
+  when: apache24_scl_install_scl_repo
+  tags:
+    - scl
+    - apache
+    - apache24
+    - webserver
+    - yum

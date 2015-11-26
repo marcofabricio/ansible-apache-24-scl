@@ -1,0 +1,35 @@
+# {{ ansible_managed }}
+
+<VirtualHost *:{{ item.port | default('80') }}>
+    ServerName {{ item.server_name }}
+
+    {% if item.server_aliases is defined -%}
+    {% for alias in item.server_aliases -%}
+    ServerAlias {{ alias }}
+    {% endfor -%}
+    {% endif -%}
+
+    DocumentRoot {{ item.document_root }}
+    DirectoryIndex {{ item.directory_index | default('index.html') }}
+
+    ErrorLog {{ item.error_log | default('/var/log/httpd24') }}/{{ item.server_name }}_error.log
+    CustomLog {{ item.custom_log | default('/var/log/httpd24') }}/{{ item.server_name }}_access.log combined
+
+    {% if item.server_admin is defined -%}
+    ServerAdmin {{ item.server_admin }}
+    {% endif %}
+
+    {% if item.directory_extra is defined -%}
+    <Directory "{{ item.document_root }}">
+    {% for extra in item.directory_extra -%}
+    {{ extra }}
+    {% endfor -%}
+    </Directory>
+    {% endif %}
+
+    {% if item.virtualhost_extra is defined -%}
+    {% for extra in item.virtualhost_extra -%}
+    {{ extra }}
+    {% endfor -%}
+    {% endif -%}
+</VirtualHost>

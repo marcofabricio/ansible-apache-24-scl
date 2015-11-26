@@ -1,0 +1,14 @@
+---
+
+- name: restart apache24
+  service:
+    name: "{{ apache24_scl_service_name }}"
+    state: restarted
+  when: apache24_scl_manage_service
+  tags:
+    - apache
+    - handler
+    - service
+    - scl
+    - apache24
+    - webserver

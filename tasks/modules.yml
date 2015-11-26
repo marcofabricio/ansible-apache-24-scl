@@ -1,0 +1,29 @@
+---
+
+- name: Apache 2.4 SCL | install apache modules
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: apache24_scl_enabled_modules
+  notify: restart apache24
+  when: apache24_scl_manage_modules
+  tags:
+    - scl
+    - apache
+    - apache24
+    - webserver
+    - yum
+
+- name: Apache 2.4 SCL | uninstall disabled apache modules
+  yum:
+    name: "{{ item }}"
+    state: absent
+  with_items: apache24_scl_disabled_modules
+  notify: restart apache24
+  when: apache24_scl_manage_modules
+  tags:
+    - scl
+    - apache
+    - apache24
+    - webserver
+    - yum

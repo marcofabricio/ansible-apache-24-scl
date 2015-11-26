@@ -1,0 +1,84 @@
+---
+
+# Should this role install the Apache package?
+#
+# yes | no
+apache24_scl_install_apache: yes
+
+# List of packages this role should install
+#
+# Packages are only installed if `apache24_scl_install_apache` is set to yes
+apache24_scl_install_packages:
+  - httpd24
+
+# Should this role manage the Apache modules?
+#
+# yes | no
+apache24_scl_manage_modules: yes
+
+# Array of mdoules that should be enabled
+#
+# Modules will only be enabled if `apache24_scl_manage_modules` is set to yes
+apache24_scl_enabled_modules: []
+
+# Array of modules that should be specifically disabled
+#
+# Modules will only be disabled if `apache24_scl_manage_modules` is set to yes
+apache24_scl_disabled_modules: []
+
+# Should this role manage the Apache service?
+#
+# yes | no
+apache24_scl_manage_service: yes
+
+# The name of the service to manage
+#
+# Only managed if `apache24_scl_manage_service` is set to yes
+apache24_scl_service_name: httpd24-httpd
+
+# The status the Apache service `apache24_scl_service_name` should be in
+#
+# Only managed if `apache24_scl_manage_service` is set to yes
+apache24_scl_service_status: started
+
+# Should the service be enabled (start on boot)?
+#
+# Only managed if `apache24_scl_manage_service` is set to yes
+#
+# yes | no
+apache24_scl_service_enabled: yes
+
+# Path to the `conf.d` directory of Apache
+apache24_scl_conf_d_directory_path: /opt/rh/httpd24/root/etc/httpd/conf.d
+
+# Should this role manage the virtual hosts in Apache?
+#
+# yes | no
+apache24_scl_manage_vhosts: yes
+
+# Array of virtual hosts, and associated properties to create
+#
+# Virtual hosts will only be managed if `apache24_scl_manage_vhosts` is set to yes
+apache24_scl_vhosts: []
+
+# Array of virtual hosts that should be disabled
+#
+# NOTE: A disabled virtual host will have it's configuration file deleted!
+#
+# Virtual hosts will only be managed if `apache24_scl_manage_vhosts` is set to yes
+apache24_scl_disabled_vhosts: []
+
+# Should this role install the Software Collections Library repo?
+#
+# yes | no
+apache24_scl_install_scl_repo: yes
+
+# List of packages to install for SCL utils
+#
+# The packages will only be installed if `apache24_scl_install_scl_repo` is set to yes
+apache24_scl_scl_utils_packages:
+  - scl-utils
+
+# Full URL of the RPM to install if `apache24_scl_install_scl_repo` is set to yes
+apache24_scl_scl_repo_url: "https://www.softwarecollections.org/en/scls/rhscl/httpd24/epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}/download/rhscl-httpd24-epel-{{ ansible_distribution_major_version }}-{{ ansible_architecture }}.noarch.rpm"
+

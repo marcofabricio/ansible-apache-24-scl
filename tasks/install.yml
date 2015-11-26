@@ -1,0 +1,27 @@
+---
+
+- name: Apache 2.4 SCL | install apache 2.4 packages
+  yum:
+    name: "{{ item }}"
+    state: installed
+  with_items: apache24_scl_install_packages
+  when: apache24_scl_install_apache
+  tags:
+    - scl
+    - apache
+    - apache24
+    - yum
+    - webserver
+
+- name: Apache 2.4 SCL | set apache service status
+  service:
+    name: "{{ apache24_scl_service_name }}"
+    state: "{{ apache24_scl_service_status }}"
+    enabled: "{{ apache24_scl_service_enabled }}"
+  when: apache24_scl_manage_service
+  tags:
+    - scl
+    - apache
+    - apache24
+    - yum
+    - webserver
