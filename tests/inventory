@@ -1,4 +1,4 @@
-127.0.0.1 ansible_port=2222 ansible_host=127.0.0.1 ansible_ssh_pass=password ansible_user=root
+centos7 ansible_connection=ssh ansible_port=2222 ansible_host=localhost ansible_ssh_pass=password ansible_user=root
 
 [containers]
-127.0.0.1
+centos7
