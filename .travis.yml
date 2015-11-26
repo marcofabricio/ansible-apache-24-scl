@@ -8,7 +8,7 @@ services:
 
 before_install:
   - sudo apt-get update -qq
-  - sudo apt-get --assume-yes intall sshpass
+  - sudo apt-get intall sshpass
 
   - docker pull centos:7
   - docker run -d -p 127.0.0.1:2222:22 centos:7 /bin/sh -c "yum install -y passwd; echo -e 'password\npassword' | (passwd --stdin $USER)"
