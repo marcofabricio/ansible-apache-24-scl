@@ -1,5 +1,7 @@
 # Apache 2.4 SCL
 
+[![Build Status](https://travis-ci.org/unfinisheddev/ansible-apache-24-scl.svg)](https://travis-ci.org/unfinisheddev/ansible-apache-24-scl)
+
 An Ansible role to install Apache 2.4 from the Software Collections Library.
 
 As this role installs Apache from the SCL, it only supports RedHat family operating systems

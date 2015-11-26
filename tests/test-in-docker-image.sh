@@ -22,6 +22,7 @@ fi
 if [ "${OS_TYPE}" == "centos" ];then
     APACHE_CTL="apachectl"
     if [ "${OS_VERSION}" == "7" ];then
+        echo -n systemd > /proc/1/comm
         ANSIBLE_VAR="apache_use_service=False"
     fi
 fi
