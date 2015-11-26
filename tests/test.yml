@@ -1,6 +1,5 @@
 ---
 
 - hosts: containers
-  remote_user: root
   roles:
     - ansible-apache-24-scl
