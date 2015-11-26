@@ -17,3 +17,5 @@ install:
   # add an ansible.cfg file to pick up the roles path
   - printf '[defaults]\nroles_path = ../' > ansible.cfg
 
+script:
+  exit 0
