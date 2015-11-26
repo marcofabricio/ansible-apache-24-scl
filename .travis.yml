@@ -10,6 +10,9 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install sshpass
 
+  - cat ~/.ssh/known_hosts
+  - ls ~/.ssh
+
   - docker pull tutum/centos:centos7
   - docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="password" tutum/centos:centos7
   - sshpass -p password ssh root@localhost -vvv -p 2222 -o PreferredAuthentications=password -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null "echo -n systemd > /proc/1/comm; exit"
