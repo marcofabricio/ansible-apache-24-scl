@@ -10,8 +10,8 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install sshpass
 
-  - docker pull centos:7
-  - docker run -d -p 127.0.0.1:2222:22 centos:7 /bin/sh -c "yum install -y passwd openssh-server; echo -e 'password\npassword' | (passwd --stdin root)"
+  - docker pull tutum/centos:centos7
+  - docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="password" tutum/centos:centos7
   - docker ps -a
 
 install:
