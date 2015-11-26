@@ -36,7 +36,6 @@ cd $RDIR/..
 printf "[defaults]\nroles_path = ../" > ansible.cfg
 
 function test_playbook_syntax(){
-
     ansible-playbook -i ${ANSIBLE_INVENTORY} ${ANSIBLE_PLAYBOOk} --syntax-check || (echo "ansible playbook syntax check was failed" && exit 2 )
 }
 

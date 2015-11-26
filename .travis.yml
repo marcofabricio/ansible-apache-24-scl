@@ -9,6 +9,7 @@ services:
 env:
   #matrix
   - OS_TYPE=centos OS_VERSION=6 ANSIBLE_VERSION=1.9.2
+  - OS_TYPE=centos OS_VERSION=7 ANSIBLE_VERSION=1.9.2
 
 before_install:
   - sudo apt-get update
