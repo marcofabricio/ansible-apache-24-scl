@@ -21,4 +21,4 @@ install:
   - printf '[defaults]\nroles_path = ../\nhost_key_checking = false' > ansible.cfg
 
 script:
-  - sshpass -p password ssh root@localhost -p 2222 "exit"
+  - sshpass -p password ssh root@localhost -p 2222 -o StrictHostKeyChecking=no "exit"
