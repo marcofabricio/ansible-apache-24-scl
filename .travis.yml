@@ -21,5 +21,4 @@ install:
   - printf '[defaults]\nroles_path = ../\nhost_key_checking = false' > ansible.cfg
 
 script:
-  - ansible-playbook -i tests/inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/inventory tests/test.yml
+  sshpass -p password ssh root@localhost -p 2222 "exit"
