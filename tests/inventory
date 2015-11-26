@@ -2,5 +2,4 @@ centos7     ansible_ssh_host=127.0.0.1      ansible_ssh_port=2222       ansible_
 centos6     ansible_ssh_host=127.0.0.1      ansible_ssh_port=2223       ansible_connection=ssh      ansible_ssh_user=root       ansible_ssh_pass=password
 
 [containers]
-centos7
 centos6
