@@ -11,7 +11,7 @@ before_install:
   - sudo apt-get install sshpass
 
   - docker pull tutum/centos:centos7
-  - docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="password" tutum/centos:centos7
+  - docker run -d -p 0.0.0.0:2222:22 -e ROOT_PASS="password" tutum/centos:centos7 /bin/sh -c "echo -n systemd > /proc/1/comm;"
   - docker ps -a
 
 install:
