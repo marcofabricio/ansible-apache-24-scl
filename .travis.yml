@@ -6,25 +6,18 @@ python: "2.7"
 services:
   - docker
 
+env:
+  #matrix
+  - OS_TYPE=centos OS_VERSION=6 ANSIBLE_VERSION=1.9.2
+
 before_install:
-  - sudo apt-get update -qq
-  - wget https://releases.hashicorp.com/vagrant/1.7.4/vagrant_1.7.4_x86_64.deb
-  - wget http://download.virtualbox.org/virtualbox/5.0.10/virtualbox-5.0_5.0.10-104061~Ubuntu~precise_i386.deb
-  - sudo apt-get install dkms
-  - sudo dpkg -i vagrant_1.7.4_x86_64.deb
-  - sudo dpkg -i virtualbox-5.0_5.0.10-104061~Ubuntu~precise_i386.deb
-  - sudo apt-get install build-essential linux-headers-`uname -r`
-  - sudo /etc/init.d/vboxdrv setup
+  - sudo apt-get update
+  - sudo apt-get upgrade lxc-docker
+  - echo 'DOCKER_OPTS="-H tcp://127.0.0.1:2375 -H unix:///var/run/docker.sock -s devicemapper"' | sudo tee /etc/default/docker > /dev/null
+  - sudo service docker restart
+  - sleep 5
+  - docker pull weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION}
 
-
-install:
-  - pip install ansible
-
-  # add an ansible.cfg file to pick up the roles path
-  - printf '[defaults]\nroles_path = ../\nhost_key_checking = false' > ansible.cfg
-
-  - vagrant up --no-provision
 
 script:
-  - ansible-playbook -i tests/vagrant_inventory tests/test.yml --syntax-check
-  - ansible-playbook -i tests/vagrant_inventory tests/test.yml
+  - sudo docker run --rm=true -v `pwd`:/ansible-apache-24-scl:rw weldpua2008/docker-ansible:${OS_TYPE}${OS_VERSION}_v${ANSIBLE_VERSION} /bin/bash -c "/ansible-apache-24-scl/tests/test-in-docker-image.sh ${OS_TYPE} ${OS_VERSION} ${ANSIBLE_VERSION}"
