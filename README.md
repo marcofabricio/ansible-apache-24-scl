@@ -101,6 +101,29 @@ The virtual hosts will only be created / modified if `apache_scl_manage_vhosts` 
 
 Default value: `[]`
 
+##### Example VirtualHost Object
+
+```
+apache24_scl_vhosts:
+  - server_name: example.com
+    server_aliases:
+      - www.example.com
+    port: 443
+    priority: 10
+    directory_index: index.php
+    document_root: /opt/example.com
+    directory_extra:
+      - RewriteEngine On
+      - AllowOverride All
+      - "Options -Indexes +FollowSymLinks"
+      - Require all granted
+    virtualhost_extra:
+      - SSLEngine on
+      - SSLCipherSuite ALL:!ADH:!EXPORT56:RC4+RSA:+HIGH:+MEDIUM:+LOW:+SSLv2:+EXP
+      - SSLCertificateFile      /etc/ssl/certs/example.com.crt
+      - SSLCertificateKeyFile   /etc/ssl/private/example.com.key
+```
+
 ### `apache24_scl_disabled_vhosts`
 
 An array of virtual hosts that should be disabled. A disabled virtual host will have the configuration
@@ -140,11 +163,9 @@ None
 
 ## Example Playbook
 
-Including an example of how to use your role (for instance, with variables passed in as parameters) is always nice for users too:
-
     - hosts: servers
       roles:
-         - { role: username.rolename, x: 42 }
+         - { role: unfinisheddev.apache-24-scl }
 
 ## License
 
