@@ -1,0 +1,17 @@
+---
+
+# These variables are for the test playbook only
+
+apache24_scl_enabled_modules:
+  - httpd24-mod_ssl
+
+apache24_scl_vhosts:
+  - server_name: topham.dev
+    priority: 15
+    directory_index: index.php
+    document_root: /opt/topham/public
+    directory_extra:
+      - RewriteEngine On
+      - AllowOverride All
+      - "Options -Indexes +FollowSymLinks"
+      - Require all granted
